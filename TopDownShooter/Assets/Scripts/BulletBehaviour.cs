@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
-    Rigidbody2D _rb;
+    [SerializeField] float bSpeed = 10f;
 
-    void Start()
-    {
-        _rb = GetComponent<Rigidbody2D>();    
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        _rb.AddForce()
+        transform.Translate(Vector2.right * Time.deltaTime * bSpeed);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.tag == "Wall")
+            Destroy(this.gameObject);
     }
 }
