@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    int life = 3;
+    public int life = 3;
+    public int score = 0;
     [SerializeField] float pSpeed = 5f;
+
+    void Start()
+    {
+        life = 3;
+        score = 0;
+    }
 
     void Update()
     {
@@ -25,7 +32,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             life--;
-            Debug.Log("Life: " + life);
+            UIManager.instance.UpdateStats();
 
             if (life == 0)
             {
