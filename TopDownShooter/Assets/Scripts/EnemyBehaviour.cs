@@ -7,6 +7,7 @@ public class EnemyBehaviour : MonoBehaviour
     GameObject player;
     float eSpeed;
     float eLife;
+    int eScore;
 
     void Awake()
     {
@@ -15,16 +16,19 @@ public class EnemyBehaviour : MonoBehaviour
         switch (this.gameObject.tag)
         {
             case "Tank":
-                eLife = 3;
-                eSpeed = 2;
+                this.eLife = 3;
+                this.eSpeed = 2;
+                this.eScore = 7;
                 break;
             case "Speedy":
-                eLife = 1;
-                eSpeed = 4;
+                this.eLife = 1;
+                this.eSpeed = 4;
+                this.eScore = 5;
                 break;
             default:
-                eLife = 1;
-                eSpeed = 3;
+                this.eLife = 1;
+                this.eSpeed = 3;
+                this.eScore = 4;
                 break;
         }
 
@@ -49,7 +53,7 @@ public class EnemyBehaviour : MonoBehaviour
             if (this.eLife == 0)
             {
                 Destroy(this.gameObject);
-                PlayerBehaviour.instance.AddScore(10);
+                PlayerBehaviour.instance.AddScore(this.eScore);
             }
             
             Destroy(other.gameObject);
