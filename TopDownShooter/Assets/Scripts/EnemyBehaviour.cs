@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    GameObject player;
     [SerializeField] float eSpeed = 3f;
+
+    void Start() {
+        player = GameObject.FindGameObjectWithTag("Player");    
+    }
 
     void Update()
     {
@@ -23,6 +27,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Destroy(this.gameObject);
             Destroy(other.gameObject);
+            PlayerBehaviour.instance.AddScore(10);
         }
     }
 }

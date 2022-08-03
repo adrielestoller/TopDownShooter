@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    public static PlayerBehaviour instance;
+
     public int life = 3;
     public int score = 0;
     [SerializeField] float pSpeed = 5f;
+
+    private void Awake() {
+        instance = this;
+    }
 
     void Start()
     {
@@ -25,6 +31,12 @@ public class PlayerBehaviour : MonoBehaviour
         float y = Input.GetAxis("Vertical");
 
         transform.position += new Vector3(x, y, 0) * Time.deltaTime * pSpeed;
+    }
+    
+    public void AddScore(int points)
+    {
+        score += points;
+        UIManager.instance.UpdateStats();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
