@@ -11,7 +11,8 @@ public class BulletBehaviour : MonoBehaviour
         transform.Translate(Vector2.right * Time.deltaTime * bSpeed);
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
+    private void OnCollisionEnter2D(Collision2D other)
+    {
         if(other.gameObject.tag == "Wall")
             Destroy(this.gameObject);
     }

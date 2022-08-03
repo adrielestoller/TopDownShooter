@@ -28,16 +28,12 @@ public class GunController : MonoBehaviour
         float aimAngle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0, 0, aimAngle);
-
         gSprite.flipY = (mousePos.x < screenPoint.x);
     }
 
     void Shoot()
     {
         if(Input.GetKeyDown(KeyCode.Mouse0))
-        {
             Instantiate(bulletPrefab, bulletSpawner.transform.position, bulletSpawner.transform.rotation);
-        }
     }
-
 }
