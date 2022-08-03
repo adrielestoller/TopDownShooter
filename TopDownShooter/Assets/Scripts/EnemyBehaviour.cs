@@ -5,10 +5,29 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     GameObject player;
-    [SerializeField] float eSpeed = 3f;
+    float eSpeed;
+    float eLife;
 
-    void Start() {
-        player = GameObject.FindGameObjectWithTag("Player");    
+    void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        switch (this.gameObject.tag)
+        {
+            case "Tank":
+                eLife = 3;
+                eSpeed = 2;
+                break;
+            case "Speedy":
+                eLife = 1;
+                eSpeed = 4;
+                break;
+            default:
+                eLife = 1;
+                eSpeed = 3;
+                break;
+        }
+
     }
 
     void Update()
@@ -25,9 +44,15 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (other.gameObject.tag == "Bullet")
         {
-            Destroy(this.gameObject);
+            this.eLife--;
+
+            if (this.eLife == 0)
+            {
+                Destroy(this.gameObject);
+                PlayerBehaviour.instance.AddScore(10);
+            }
+            
             Destroy(other.gameObject);
-            PlayerBehaviour.instance.AddScore(10);
         }
     }
 }

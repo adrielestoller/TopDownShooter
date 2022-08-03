@@ -41,7 +41,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.name.StartsWith("Enemy"))
         {
             life--;
             UIManager.instance.UpdateStats();

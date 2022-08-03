@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Wall
   - Bullet
+  - Tank
+  - Speedy
+  - Normie
   - Enemy
   layers:
   - Default
